@@ -1,0 +1,70 @@
+security:
+   cookie-props:
+      max-age-in-minutes: 7200
+      http-only: true
+      secure: true
+      domain: eduserve.co.in
+      path: /
+   allow-credentials: true
+   allowed-origins:
+   - http://localhost:8080
+   allowed-methods:
+   - GET
+   - POST
+   - PUT
+   - PATCH
+   - DELETE
+   - OPTIONS
+   allowed-headers:
+   - Authorization
+   - Origin
+   - Content-Type
+   - Accept
+   - Accept-Encoding
+   - Accept-Language
+   - Access-Control-Allow-Origin
+   - Access-Control-Allow-Headers
+   - Access-Control-Request-Method
+   - X-Requested-With
+   - X-Auth-Token
+   - X-Xsrf-Token
+   - Cache-Control
+   - Id-Token
+   allowed-public-apis:
+   - /favicon.ico
+   - /user/**
+   - /search/**
+   - /index/**
+   - /test/**
+   exposed-headers:
+   - X-Xsrf-Token
+   - Access-Control-Allow-Origin
+   valid-application-roles:
+   - ROLE_ADMIN
+   - ROLE_CUSTOMER
+   super-admins:
+   - aphougat_t@tataunistore.com
+   - abhay.phougat@cosmoneural.com
+   test:
+     login:
+       enabled: ${TEST_LOGIN_ENABLED}
+spring:
+   cloud:
+      stream:
+         bindings:
+            content:
+               destination: content
+            user:
+               destination: user
+logging:
+   level:
+      root: ERROR
+      org:
+        springframework:
+          web: ERROR
+        hibernate: ERROR
+      io:
+        thepro: ERROR
+   pattern:
+     console: "%d{HH:mm:ss} || %highlight(%5p) < %highlight(%-35.35logger{35}) > %highlight(%m%n)"
+    
