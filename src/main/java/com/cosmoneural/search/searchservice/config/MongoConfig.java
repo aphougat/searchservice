@@ -1,24 +1,24 @@
 package com.cosmoneural.search.searchservice.config;
 
+import com.cosmoneural.search.searchservice.scope.TenantScoped;
+import com.cosmoneural.search.searchservice.tenant.TenantHolder;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.tatadigital.product.spring.scope.TenantScoped;
-import com.tatadigital.product.tenant.TenantHolder;
+import com.mongodb.reactivestreams.client.MongoClient;
+import com.mongodb.reactivestreams.client.MongoClients;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.data.mongodb.MongoDatabaseFactory;
-import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
-import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
+import org.springframework.data.mongodb.ReactiveMongoDatabaseFactory;
+import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration;
+import org.springframework.data.mongodb.core.SimpleReactiveMongoDatabaseFactory;
 
 import javax.annotation.Resource;
 
 @Configuration
 @EntityScan("com.tatadigital.product")
-public class MongoConfig extends AbstractMongoClientConfiguration {
+public class MongoConfig extends AbstractReactiveMongoConfiguration {
 
 
     @Resource
@@ -35,7 +35,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @TenantScoped
     @Override
-    public MongoClient mongoClient() {
+    public MongoClient reactiveMongoClient() {
         ConnectionString connectionString = new ConnectionString(environment.getProperty(String.format("com.tatadigital.product.%s.mongo.connection.url",tenantHolder.getTenant())));
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
@@ -46,12 +46,8 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Bean
     @TenantScoped
-    public MongoDatabaseFactory mongoDbFactory() {
-        return new SimpleMongoClientDatabaseFactory(mongoClient(), getDatabaseName());
+    public ReactiveMongoDatabaseFactory mongoDbFactory() {
+        return new SimpleReactiveMongoDatabaseFactory(reactiveMongoClient(), getDatabaseName());
     }
 
- /*   @Override
-    protected boolean autoIndexCreation() {
-        return true;
-    }*/
 }

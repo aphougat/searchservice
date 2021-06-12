@@ -1,7 +1,5 @@
 package com.cosmoneural.search.searchservice.config;
 
-
-
 import com.cosmoneural.search.searchservice.scope.TenantScope;
 import com.cosmoneural.search.searchservice.tenant.TenantHolder;
 import com.cosmoneural.search.searchservice.tenant.ThreadLocalTenantHolder;
