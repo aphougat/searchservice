@@ -30,7 +30,7 @@ public class MongoDBCollectionService {
 
     public MongoClient getClient()
     {
-            ConnectionString uri = new ConnectionString(environment.getProperty(String.format("com.tatadigital.product.%s.mongo.connection.url",tenantHolder.getTenant())));
+            ConnectionString uri = new ConnectionString(environment.getProperty(String.format("com.cosmoneural.search.%s.mongo.connection.url",tenantHolder.getTenant())));
             CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
             CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
             MongoClientSettings clientSettings = MongoClientSettings.builder()
@@ -43,14 +43,14 @@ public class MongoDBCollectionService {
 
     public <T> MongoCollection<T> getCollection(MongoClient mongoClient, Class<T> collectionClass) {
 
-        String dbName = environment.getProperty(String.format("com.tatadigital.product.%s.mongo.dbname",tenantHolder.getTenant()));
+        String dbName = environment.getProperty(String.format("com.cosmoneural.search.%s.mongo.dbname",tenantHolder.getTenant()));
         MongoDatabase db = mongoClient.getDatabase(dbName);
         return db.getCollection(collectionClass.getSimpleName(), collectionClass);
     }
 
     public MongoCollection<Document> getCollection(MongoClient mongoClient,String collectionName) {
 
-        String dbName = environment.getProperty(String.format("com.tatadigital.product.%s.mongo.dbname",tenantHolder.getTenant()));
+        String dbName = environment.getProperty(String.format("com.cosmoneural.search.%s.mongo.dbname",tenantHolder.getTenant()));
         MongoDatabase db = mongoClient.getDatabase(dbName);
         return  db.getCollection(collectionName);
     }

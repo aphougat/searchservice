@@ -17,7 +17,7 @@ import org.springframework.data.mongodb.core.SimpleReactiveMongoDatabaseFactory;
 import javax.annotation.Resource;
 
 @Configuration
-@EntityScan("com.tatadigital.product")
+@EntityScan("com.cosmoneural.search")
 public class MongoConfig extends AbstractReactiveMongoConfiguration {
 
 
@@ -30,13 +30,13 @@ public class MongoConfig extends AbstractReactiveMongoConfiguration {
     @TenantScoped
     @Override
     protected String getDatabaseName() {
-        return environment.getProperty(String.format("com.tatadigital.product.%s.mongo.dbname",tenantHolder.getTenant()));
+        return environment.getProperty(String.format("com.cosmoneural.search.%s.mongo.dbname",tenantHolder.getTenant()));
     }
 
     @TenantScoped
     @Override
     public MongoClient reactiveMongoClient() {
-        ConnectionString connectionString = new ConnectionString(environment.getProperty(String.format("com.tatadigital.product.%s.mongo.connection.url",tenantHolder.getTenant())));
+        ConnectionString connectionString = new ConnectionString(environment.getProperty(String.format("com.cosmoneural.search.%s.mongo.connection.url",tenantHolder.getTenant())));
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
