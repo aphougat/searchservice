@@ -9,6 +9,7 @@ import com.mongodb.reactivestreams.client.MongoClients;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.ReactiveMongoDatabaseFactory;
 import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration;
@@ -46,6 +47,7 @@ public class MongoConfig extends AbstractReactiveMongoConfiguration {
 
     @Bean
     @TenantScoped
+    @Primary
     public ReactiveMongoDatabaseFactory mongoDbFactory() {
         return new SimpleReactiveMongoDatabaseFactory(reactiveMongoClient(), getDatabaseName());
     }

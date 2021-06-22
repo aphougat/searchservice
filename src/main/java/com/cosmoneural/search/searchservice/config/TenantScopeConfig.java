@@ -14,7 +14,7 @@ public class TenantScopeConfig {
     @Bean
     public static TenantHolder tenantHolder()
     {
-        return new ThreadLocalTenantHolder("tcp");
+        return new ThreadLocalTenantHolder("beauty");
     }
 
     @Bean

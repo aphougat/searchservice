@@ -55,7 +55,7 @@ public class ContentRepositoryTest {
         if (contentRepository.findById(contentModel.getId()).isPresent())
         {
             final ContentModel retrievedContentModel = contentRepository.findById(contentModel.getId()).get();
-            assertEquals(contentModel.getContentText(), retrievedContentModel.getContentText());
+            assertEquals(contentModel.getTitle(), retrievedContentModel.getTitle());
         }
     }
 
