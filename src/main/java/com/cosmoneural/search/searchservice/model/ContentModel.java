@@ -22,7 +22,7 @@ public class ContentModel {
     String contentUrl;
     @Indexed(name = "mediaUrl", type = "string")
     String mediaUrl;
-    @Indexed(name = "name", type = "text")
+    @Indexed(name = "keywords", type = "text")
     List<String> keywords;
     @Indexed(name = "user", type = "string")
     String user;

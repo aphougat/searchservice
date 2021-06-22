@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -92,16 +93,26 @@ public class ContentRepositoryTest {
         final ContentModel phone = new ContentModel();
         phone.setId("P0001");
         phone.setTitle("Smart Phone");
+        phone.setDesc("This is a smart phone");
+        List<String> keyWords = new ArrayList<>();
+        keyWords.add("Smart Phone");
+        keyWords.add("Phone");
+        keyWords.add("Android");
+        phone.setKeywords(keyWords);
         contentRepository.save(phone);
 
         final ContentModel phoneCover = new ContentModel();
         phoneCover.setId("P0002");
         phoneCover.setTitle("Phone Cover");
+        phoneCover.setDesc("This is a smart phone");
+        phoneCover.setKeywords(keyWords);
         contentRepository.save(phoneCover);
 
         final ContentModel wirelessCharger = new ContentModel();
         wirelessCharger.setId("P0003");
         wirelessCharger.setTitle("Phone Charging Cable");
+        wirelessCharger.setDesc("Phone Charging Cable");
+        wirelessCharger.setKeywords(keyWords);
         contentRepository.save(wirelessCharger);
 
         Page<ContentModel> result = contentRepository.findByCustomQuery("Phone", PageRequest.of(0, 10));
@@ -113,16 +124,26 @@ public class ContentRepositoryTest {
         final ContentModel phone = new ContentModel();
         phone.setId("P0001");
         phone.setTitle("Smart Phone");
+        phone.setDesc("This is a smart phone");
+        List<String> keyWords = new ArrayList<>();
+        keyWords.add("Smart Phone");
+        keyWords.add("Phone");
+        keyWords.add("Android");
+        phone.setKeywords(keyWords);
         contentRepository.save(phone);
 
         final ContentModel phoneCover = new ContentModel();
         phoneCover.setId("P0002");
         phoneCover.setTitle("Phone Cover");
+        phoneCover.setDesc("This is a smart phone");
+        phoneCover.setKeywords(keyWords);
         contentRepository.save(phoneCover);
 
         final ContentModel wirelessCharger = new ContentModel();
         wirelessCharger.setId("P0003");
         wirelessCharger.setTitle("Phone Charging Cable");
+        wirelessCharger.setDesc("Phone Charging Cable");
+        wirelessCharger.setKeywords(keyWords);
         contentRepository.save(wirelessCharger);
 
         Page<ContentModel> result = contentRepository.findByNamedQuery("one",  PageRequest.of(0, 10));
