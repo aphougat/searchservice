@@ -13,7 +13,6 @@ import org.springframework.data.solr.repository.config.EnableSolrRepositories;
         basePackages = "com.cosmoneural.search.searchservice.repository",
         namedQueriesLocation = "classpath:application.properties",
         schemaCreationSupport = true)
-@ComponentScan
 public class SolrConfig {
 
     @Bean
