@@ -43,8 +43,7 @@ security:
    - ROLE_ADMIN
    - ROLE_CUSTOMER
    super-admins:
-   - aphougat_t@tataunistore.com
-   - abhay.phougat@cosmoneural.com
+
    test:
      login:
        enabled: ${TEST_LOGIN_ENABLED}
@@ -54,8 +53,10 @@ spring:
          bindings:
             content:
                destination: content
+               group: searchService
             user:
                destination: user
+               group: searchService
 logging:
    level:
       root: ERROR
